@@ -1,0 +1,16 @@
+{
+    "description": "Task Tracker CLI",
+
+    "file_to_read": "tasks.json",
+    "file_to_write": "tasks-temp.json",
+
+    "actions_template": {
+        "list": ["done", "in_progress", "todo"],
+        "add": 1,
+        "delete": 1,
+        "update": 1,
+        "mark-in-progress": 1,
+        "mark-done": 1
+    }
+
+}
