@@ -3,9 +3,10 @@
 
     "file_to_read": "tasks.json",
     "file_to_write": "tasks-temp.json",
+    "temp": "tasks-temp.json",
 
     "actions_template": {
-        "list": ["done", "in_progress", "todo"],
+        "list": ["done", "in-progress", "todo"],
         "add": 1,
         "delete": 1,
         "update": 1,
