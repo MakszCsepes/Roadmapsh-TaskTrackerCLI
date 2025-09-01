@@ -1,6 +1,6 @@
 from main import configCreate
 from typing import Dict, List
-from task_tracker_class import TaskTracker
+from task_tracker import TaskTracker
 import pytest
 
 # ==== CONFIGURATION ====
@@ -18,7 +18,7 @@ def test_create_config_valid():
 
 # ==== TASK TRACKER CLASS ====
 
-# === READ TASKS ===
+
 
 @pytest.fixture
 def tracker() -> TaskTracker:
@@ -50,18 +50,20 @@ def tasks_dataset() -> object:
         },
     ]}
 
-def test_can_read_all_tasks(tracker):
+
+# === READ TASKS ===
+def test_READ_can_read_all_tasks(tracker):
     tasks = tracker.read_the_tasks()
     assert isinstance(tasks, List)
     assert len(tasks) != 0
 
-def test_can_read_tasks_from_dataset(tracker, tasks_dataset):
-    tasks = tracker.read_the_tasks(status = "", read_from_dataset = True, dataset = tasks_dataset)
-
+def test_READ_can_read_tasks_from_dataset(tracker, tasks_dataset):
+    tasks = tracker.read_the_tasks(status = "all", read_from_dataset = True, dataset = tasks_dataset)
+    
     assert isinstance(tasks, List)
     assert len(tasks) == 3
 
-def test_read_the_tasks_raises_exception_if_dataset_not_provided(tracker):
+def test_READ_read_the_tasks_raises_exception_if_dataset_not_provided(tracker):
     with pytest.raises(ValueError) as excinfo:
         tracker.read_the_tasks("", read_from_dataset = True)
 
@@ -72,7 +74,7 @@ def test_read_the_tasks_raises_exception_if_dataset_not_provided(tracker):
     ("in-progress", 1),
     ("done", 1),
 ])
-def test_can_read_tasks_by_status(tracker, task_status, expected_count, tasks_dataset):
+def test_READ_can_read_tasks_by_status(tracker, task_status, expected_count, tasks_dataset):
     tasks = tracker.read_the_tasks(task_status, read_from_dataset = True, dataset = tasks_dataset)
     
     assert all([task["status"] == task_status for task in tasks])
@@ -81,14 +83,14 @@ def test_can_read_tasks_by_status(tracker, task_status, expected_count, tasks_da
 
 # === WRITE TASKS ===
 
-def test_can_serialize_generated_task(tracker):
+def test_WRITE_can_serialize_generated_task(tracker):
     task = tracker.generate_new_task("new_task")
     print(f"Task: {task}")
 
     import json
     assert json.dumps(task)
     
-def test_can_write_tasks(tracker):
+def test_WRITE_can_write_tasks(tracker):
     file_to_write = "test_file.json"
     tasks = [tracker.generate_new_task("new_task")]
     tracker.write_the_tasks(tasks, file_to_write)
@@ -108,6 +110,13 @@ def test_can_write_tasks(tracker):
 
 # === SET ACTION ===
 
+@pytest.mark.parametrize("arguments", [
+    ("list done"),
+])
+def test_SETACTION_set_list_action_successful(tracker, arguments):
+    #assert tracker.set_action(1) > 0
+    #assert tracker.actions[0] == ("list", "done")
+    pass
 
 
 # ==== CLI-Level TESTS ====

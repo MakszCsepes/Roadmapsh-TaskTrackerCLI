@@ -60,7 +60,6 @@ class TaskTracker:
         if read_from_dataset:
             if not dataset:
                 raise ValueError("The dataset to read from has not been provided!")
-            
             tasks = dataset["tasks"]
         else:
             with open(self.config["file_to_read"], "r") as f:
@@ -69,6 +68,7 @@ class TaskTracker:
         # filter by status if needed
         if status != "all":
             return [t for t in tasks if t["status"] == status]
+        
         return tasks
     
 
