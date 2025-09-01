@@ -27,6 +27,7 @@ jobs:
     # Check for known security vulnerabilities in dependencies
     - name: Install safety
       run: | 
+        pip install typer==0.9.0
         pip install safety
         pip install rich
 
