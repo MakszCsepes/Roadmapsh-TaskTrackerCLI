@@ -1,7 +1,7 @@
 {
     "description": "Task Tracker CLI",
 
-    "file_to_read": "tasks.json",
+    "file_to_read": "tasks-temp.json",
     "file_to_write": "tasks-temp.json",
     "temp": "tasks-temp.json",
 
@@ -10,8 +10,32 @@
         "add": 1,
         "delete": 1,
         "update": 1,
-        "mark-in-progress": 1,
-        "mark-done": 1
-    }
+        "mark": ["mark-in-progress", "mark-done"]
+    },
 
+    "messages": {
+        "list_of_tasks": "Here's a list of your {} tasks:",
+        "empty_list": "There are no tasks for the specified status!",
+        "task_deleted": "The task ({}) was deleted!",
+        "task_added": "Task added successfully (ID: {})",
+        "task_updated": "The task ({}) was updated!",
+        "task_marked": "The task ({}) was marked as {}!"
+    },
+
+    "warnings": {},
+
+    "errors": {
+        "unknown_cmd": "The specified action is unknown!",
+        "incorrectly_specified": " action is not specified correctly",
+        "add_task_desc": "The task description must be enclosed in quotations!",
+        "upd_no_id": "Cannot update the task! The task with specified id doesn't exist!",
+        "del_no_id": "Cannot delete the task! The task with specified id doesn't exist!",
+        "mark_no_id": "Cannot mark the task! The task with specified id doesn't exist!"
+    },
+
+    "logging": {
+        "system_logs": "off"
+    },
+
+    "exceprt_len": 25
 }
