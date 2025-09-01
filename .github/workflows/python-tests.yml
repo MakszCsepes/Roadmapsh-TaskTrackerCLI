@@ -27,9 +27,10 @@ jobs:
     # Check for known security vulnerabilities in dependencies
     - name: Install safety
       run: | 
-        pip install typer==0.9.0
-        pip install safety
-        pip install rich
+        pip install rich==13.7.0
+        pip install typing-extensions==4.9.0
+        pip install typer==0.7.0
+        pip install safety==2.3.5
 
     - name: Run security checks
       run: |
