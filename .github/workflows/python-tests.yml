@@ -27,6 +27,7 @@ jobs:
     # Check for known security vulnerabilities in dependencies
     - name: Install safety
       run: pip install safety
+      run: pip install rich
 
     - name: Run security checks
       run: |
